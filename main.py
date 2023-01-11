@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, flash
 # from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
 from werkzeug.utils import secure_filename
-from wtforms import StringField, SubmitField, URLField, SelectField, FileField
+from wtforms import StringField, SubmitField, SelectField, FileField
 from wtforms.validators import DataRequired, URL
 import csv
 from flask_bootstrap import Bootstrap
@@ -25,7 +25,7 @@ date = datetime.now()
 
 class ShopForm(FlaskForm):
     shop_name = StringField('Shop Name', validators=[DataRequired()])
-    location = URLField('Location', validators=[DataRequired(), URL(message='Enter a valid url')])
+    location = StringField('Location', validators=[DataRequired(), URL(message='Enter a valid url')])
     open_time = SelectField('Open', validators=[DataRequired()], choices=['', '7:00AM', '8:00AM', '9:00AM', '10:00AM', '11:00AM', 'Unspecified'])
     close_time = SelectField('Close', validators=[DataRequired()], choices=['', '7:00PM', '8:00PM', '9:00PM', '10:00PM', 'Unspecified'])
     wifi = SelectField('Wifi', validators=[DataRequired()], choices=['', '✅', '❎'])
