@@ -1,0 +1,40 @@
+{% extends 'bootstrap/base.html' %}
+
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Add A New Cafe Shop{% endblock %}
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet"
+      href="{{url_for('.static', filename='css/style.css')}}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8">
+
+      <h1>Add a new Cafe-Shop into the database</h1>
+
+              {% with messages = get_flashed_messages() %}
+            {% if messages: %}
+                {% for message in messages: %}
+<!--                    {% if message == 'Select a valid option for wifi and power!' %}-->
+<!--                            <h3 style="color: red"> {{ message }} </h3>-->
+<!--                    {% endif %}-->
+                    <h3 style="color: green"> {{ message }} </h3>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+      <!-- This is where the WTForm will go -->
+      {{ wtf.quick_form(form, novalidate=True) }}
+
+	  <h3 class="space-above"><a href="{{url_for('home')}}" class="btn btn-secondary btn-lg">See all cafes</a></h3>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}
